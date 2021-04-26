@@ -1,47 +1,41 @@
-﻿using System;
-
-namespace ClassLibrary2Tests
+﻿
+namespace NInit.Task9
 {
     public class Calculator
     {
-        public double Value1 { get; set; }
-        public double Value2 { get; set; }
 
-        public Parser parser = new Parser();
- 
-        public Calculator(string value1, string value2)
+        public ValuesAndValidation values = new ValuesAndValidation();
+
+         public Calculator(double value1, double value2)
         {
-            if ((parser.Validator(value1)) && (parser.Validator(value2)))
-            {
-            Value1 = Convert.ToDouble(value1);
-            Value2 = Convert.ToDouble(value2);
-            }
+            values.Value1 = value1;
+            values.Value2 = value2;
         }
-
+   
         public double Add()
         {
-            return Value1 + Value2;
+            return values.Value1 + values.Value2;
         }
         public double Subsctarct()
         {
-            return Value1 - Value2;
+            return values.Value1 - values.Value2;
         }
 
         public double Divide()
         {
-            if (Value2 != 0)
+            if (values.Value2 != 0)
             {
-                return (Value1 / Value2);
+                return (values.Value1 / values.Value2);
             }
             else
             {
-                return 0;
+                return double.NaN;
             }                   
         }
 
         public double Multiply()
         {
-            return Value1 * Value2;
+            return values.Value1 * values.Value2;
         }
 
     

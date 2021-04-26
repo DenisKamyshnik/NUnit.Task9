@@ -1,7 +1,8 @@
 ﻿using NUnit.Framework;
+using NInit.Task9;
 
 
-namespace ClassLibrary2Tests
+namespace NUnit.Task9.Tests
 {
     class CalculatorTest
     {
@@ -10,18 +11,24 @@ namespace ClassLibrary2Tests
         {
             string value1 = "11";
             string value2 = "22";
-            var page = new Calculator(value1, value2);
-
-            Assert.AreEqual(page.Value1 + page.Value2, page.Add());
+            var values = new ValuesAndValidation();
+            values.SetValue1(value1);
+            values.SetValue2(value2);
+            var calculator = new Calculator(values.Value1, values.Value2);
+                             
+            Assert.AreEqual(values.Value1 + values.Value2, calculator.Add());
         }
-        [Test]
+      [Test]
         public void TestAddFunctionWithString()
         {
             string value1 = "11";
             string value2 = "a";
-            var page = new Calculator(value1, value2);
+            var values = new ValuesAndValidation();
+            values.SetValue1(value1);
+            values.SetValue2(value2);
+            var calculator = new Calculator(values.Value1, values.Value2);
 
-            Assert.AreEqual(page.Value1 + page.Value2 + 1, page.Add());
+            Assert.AreEqual(values.Value1 + values.Value2 + 1, calculator.Add());
         }
 
         [Test]
@@ -29,27 +36,36 @@ namespace ClassLibrary2Tests
         {
             string value1 = "11";
             string value2 = "22";
-            var page = new Calculator(value1, value2);
+            var values = new ValuesAndValidation();
+            values.SetValue1(value1);
+            values.SetValue2(value2);
+            var calculator = new Calculator(values.Value1, values.Value2);
 
-            Assert.AreEqual(page.Value1 - page.Value2, page.Subsctarct());
+            Assert.AreEqual(values.Value1 - values.Value2, calculator.Subsctarct());
         }
         [Test]
         public void TestSubsctarctFunctionWithString()
         {
             string value1 = "a";
             string value2 = "22";
-            var page = new Calculator(value1, value2);
+            var values = new ValuesAndValidation();
+            values.SetValue1(value1);
+            values.SetValue2(value2);
+            var calculator = new Calculator(values.Value1, values.Value2);
 
-            Assert.AreEqual(page.Value1 - page.Value2, page.Subsctarct());
+            Assert.AreEqual(values.Value1 - values.Value2, calculator.Subsctarct());
         }
         [Test]
         public void TestDivideFunction()
         {
             string value1 = "10";
             string value2 = "-5";
-            var page = new Calculator(value1, value2);
+            var values = new ValuesAndValidation();
+            values.SetValue1(value1);
+            values.SetValue2(value2);
+            var calculator = new Calculator(values.Value1, values.Value2);
 
-            Assert.AreEqual(page.Value1 / page.Value2, page.Divide());
+            Assert.AreEqual(values.Value1 / values.Value2, calculator.Divide());
         }
 
         [Test]
@@ -57,35 +73,50 @@ namespace ClassLibrary2Tests
         {
             string value1 = "-7";
             string value2 = null;
-            var page = new Calculator(value1, value2);
-            Assert.IsNotNull(page.Divide());
+            var values = new ValuesAndValidation();
+            values.SetValue1(value1);
+            values.SetValue2(value2);
+            var calculator = new Calculator(values.Value1, values.Value2);
+
+            Assert.IsNotNull(calculator.Divide());
         }
+
         [Test]
-        public void TestDivideFunctionWitZero()
+        public void TestDivideFunctionWithZero()
         {
-            string value1 = "-7";
+            string value1 = "7";
             string value2 = "0";
-            var page = new Calculator(value1, value2);
-            Assert.AreEqual(0, page.Divide());
+            var values = new ValuesAndValidation();
+            values.SetValue1(value1);
+            values.SetValue2(value2);
+            var calculator = new Calculator(values.Value1, values.Value2);
+
+            Assert.IsNaN(calculator.Divide());
         }
 
         [Test]
           public void TestMultiplyFunction()
           {
-              string value1 = "11";
-              string value2 = "22";
-              var page = new Calculator(value1, value2);
+             string value1 = "11";
+             string value2 = "22";
+            var values = new ValuesAndValidation();
+            values.SetValue1(value1);
+            values.SetValue2(value2);
+            var calculator = new Calculator(values.Value1, values.Value2);
 
-              Assert.AreEqual(page.Value1 * page.Value2 * 0, page.Multiply());
+            Assert.AreEqual(values.Value1 * values.Value2 * 0, calculator.Multiply());
           }
         [Test]
         public void TestMultiplyFunctionWithString()
         {
             string value1 = "a";
             string value2 = " ";
-            var page = new Calculator(value1, value2);
+            var values = new ValuesAndValidation();
+            values.SetValue1(value1);
+            values.SetValue2(value2);
+            var calculator = new Calculator(values.Value1, values.Value2);
 
-            Assert.AreEqual(page.Value1 * page.Value2, page.Multiply());
+            Assert.AreEqual(values.Value1 * values.Value2, calculator.Multiply());
         }
     }
 }
